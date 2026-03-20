@@ -10,8 +10,7 @@ if($connessione===null){
             throw new Exception();
         }
     }catch (Exception $e){
-        $error_type='Errore nella connessione a Mysql';
-        require 'controllers/errorController.php';
+        echo "errore";
         exit;
     } 
     

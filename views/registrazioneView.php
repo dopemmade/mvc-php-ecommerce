@@ -1,11 +1,11 @@
 <?php require_once 'headerView.php'; ?>
 
 <div class="container">
-    <h1>🛒ShopOnline - Registrazione</h1>
+    <h1>🛒 ShopOnline - Registrazione</h1>
     <p>Compila il form per creare il tuo account</p>
     <p>I campi * sono obbligatori</p>
 
-    <form action="index.php?pagina=elabora" method="POST">
+    <form action="index.php?pagina=elabora" method="POST" enctype="multipart/form-data">
         
         <fieldset>
             <legend>Dati Anagrafici</legend>
@@ -33,7 +33,9 @@
                     <label><input type="radio" name="genere" value="nd">🏳️‍⚧️ Preferisco non rispondere</label>
                 </div>
             </div>
-        </fieldset> <fieldset>  
+        </fieldset>
+
+        <fieldset>  
             <legend>Contatti e Indirizzo</legend>
             <div class="form-group">
                 <label for="em">Email*</label>
@@ -69,18 +71,11 @@
         </fieldset>
 
         <fieldset>
-            <legend>Dati facoltativi</legend>
+            <legend>Foto Profilo (facoltativa)</legend>
             <div class="form-group">
-                <label for="col">Colore preferito</label>
-                <input type="color" name="col" id="col">
-            </div>
-            <div class="form-group">
-                <label>Interessi:</label><br>
-                <input type="checkbox" name="Musica" id="Musica"> Musica
-                <input type="checkbox" name="Cinema" id="Cinema"> Cinema
-                <input type="checkbox" name="Teatro" id="Teatro"> Teatro
-                <input type="checkbox" name="Letteratura" id="Letteratura"> Letteratura
-                <input type="checkbox" name="Giardinaggio" id="Giardinaggio"> Giardinaggio
+                <label for="pfp">Carica la tua immagine:</label>
+                <input type="file" name="pfp" id="pfp" accept="image/*">
+                <small>Se non carichi nulla verrà usata l'immagine di default</small>
             </div>
         </fieldset>
 
@@ -93,4 +88,6 @@
 
         <button type="submit">Invia</button>
     </form>
-</div> <?php require_once 'footerView.php'; ?>
+</div>
+
+<?php require_once 'footerView.php'; ?>

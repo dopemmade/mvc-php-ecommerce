@@ -1,7 +1,9 @@
 <?php
     require_once 'config.php';
     require_once 'models/model.php';
-
+    if (!isset($_SESSION['carrello'])) {
+        $_SESSION['carrello'] = [];
+    }
     $connessione=getDbconnection();
 
     $pagina=$_GET['pagina'] ?? 'home';
