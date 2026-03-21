@@ -13,7 +13,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta name="description" content="Pagine e-commerce">
     <title>ShopOnline - Home</title>
 
-    <link rel="shortcut icon" href="../images/ecommerce.png" type="png"> 
+    <link rel="shortcut icon" href="assets/images/ecommerce.png" type="png"> 
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -34,7 +34,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <a href="index.php?pagina=catalogo" class="<?php echo ($pagina_corrente == 'catalogo') ? 'attivo' : ''; ?>">🦃Catalogo</a>
 
-    <a href="index.php?pagina=chi_siamo" class="<?php echo ($pagina_corrente == 'chi_siamo') ? 'attivo' : ''; ?>">👨🏻‍🦳Chi siamo</a>
+    <a href="index.php?pagina=chisiamo" class="<?php echo ($pagina_corrente == 'chi_siamo') ? 'attivo' : ''; ?>">👨🏻‍🦳Chi siamo</a>
 
     <a href="index.php?pagina=contatti" class="<?php echo ($pagina_corrente == 'contatti') ? 'attivo' : ''; ?>">📞Contatti</a>
 
