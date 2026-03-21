@@ -9,8 +9,8 @@
 }
 
 body {
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: #f4f6f5;
+    color: #1f2421;
     line-height: 1.6;
     text-align: center; /* Mantiene la compatibilità con il tuo layout */
 }
@@ -19,7 +19,7 @@ body {
    2. HEADER E NAVIGAZIONE
    ============================================================ */
 header {
-    background-color: #2c3e50;
+    background-color: #222831;
     color: white;
     padding: 30px 20px;
 }
@@ -35,7 +35,7 @@ header h1 {
 }
 
 .main_nav {
-    background-color: #243136;
+    background-color: #393E46;
     height: 60px;
     display: flex;
     justify-content: center;
@@ -55,11 +55,11 @@ header h1 {
 }
 
 .main_nav a:hover {
-    background-color: #34495e;
+    background-color: #4d535d;
 }
 
 .main_nav a.attivo {
-    background-color: #e74c3c; /* Rosso più moderno */
+    background-color: #788585; /* Rosso più moderno */
     font-weight: bold;
 }
 
@@ -85,7 +85,7 @@ header h1 {
 }
 
 .container h1 {
-    color: #2c3e50;
+    color: #222831;
     text-align: center;
     margin-bottom: 10px;
 }
@@ -96,7 +96,7 @@ header h1 {
     font-size: 0.9em;
 }
 .container-catalog h1 {
-    color: #2c3e50;
+    color: #222831;
     text-align: center;
     margin-bottom: 10px;
 }
@@ -115,7 +115,7 @@ fieldset {
 
 legend {
     font-weight: bold;
-    color: #2c3e50;
+    color: #222831;
     font-size: 1.1em;
     border-bottom: 2px solid #eee;
     width: 100%;
@@ -131,7 +131,7 @@ legend {
     display: block;
     font-weight: 600;
     margin-bottom: 5px;
-    color: #2c3e50;
+    color: #222831;
 }
 
 /* INPUT UNIFICATI */
@@ -191,7 +191,7 @@ input:focus, select:focus {
 button[type="submit"] {
     width: 100%;
     padding: 14px;
-    background: #2c3e50;
+    background: #222831;
     color: white;
     border: none;
     border-radius: 6px;
@@ -252,14 +252,14 @@ button[type="submit"]:hover {
 
 .card h3, .prodotto-card h3 {
     padding: 10px;
-    color: #2c3e50;
+    color: #222831;
 }
 
 /* ============================================================
    5. FOOTER E RESPONSIVE
    ============================================================ */
 footer {
-    background-color: #2c3e50;
+    background-color: #222831;
     color: white;
     padding: 40px 20px;
     margin-top: 50px;
@@ -325,66 +325,83 @@ footer {
 /* MENU A TENDINA UTENTE HEADER */
 /* CONTENITORE PRINCIPALE */
 /* MENU A TENDINA UTENTE SQUADRATO */
+/* ===== MENU PROFILO HEADER (NUOVO) ===== */
+
 .user-dropdown {
     position: relative;
     display: inline-block;
 }
 
-/* PULSANTE PRINCIPALE (senza bordi ovali) */
+/* Bottone principale */
 .user-dropdown .dropbtn {
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 12px;
-    background-color: #2c3e50;
-    color: white;
-    font-weight: bold;
-    border-radius: 4px; /* squadrato leggermente arrotondato */
+    padding: 8px 14px;
+    background-color: #1f2421;
+    color: #ffffff;
+    font-weight: 500;
+    border-radius: 4px; /* squadrato */
     cursor: pointer;
     transition: background 0.3s;
 }
 
 .user-dropdown .dropbtn:hover {
-    background-color: #34495e;
+    background-color: #2c312e;
 }
 
-/* IMMAGINE TONDA */
+/* Avatar */
 .user-avatar {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     object-fit: cover;
-    border: 1px solid rgba(255,255,255,0.2);
 }
 
-/* MENU TENDINA */
+/* Dropdown */
 .dropdown-content {
     display: none;
     position: absolute;
-    top: 100%;
+    top: 110%;
     right: 0;
     background-color: #ffffff;
-    min-width: 180px;
-    border-radius: 4px; /* squadrato */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    min-width: 200px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
     overflow: hidden;
-    z-index: 1000;
+    z-index: 999;
 }
 
-/* LINK MENU */
+/* Link menu */
 .dropdown-content a {
     display: block;
     padding: 12px 16px;
-    color: #2c3e50;
+    color: #1f2421;
     text-decoration: none;
-    font-weight: 500;
-    transition: background 0.3s, color 0.3s;
+    font-size: 0.9em;
+    transition: background 0.2s;
 }
 
-/* HOVER LINK */
+/* Hover normale */
 .dropdown-content a:hover {
-    background-color: #2c3e50;
-    color: white !important;
+    background-color: #f4f6f5;
+}
+
+/* Logout */
+.dropdown-content a.logout-red {
+    border-top: 1px solid #eee;
+    color: red;
+    font-weight: bold;
+}
+
+.dropdown-content a.logout-red:hover {
+    background-color: f4f6f5;
+}
+
+/* Apertura */
+.user-dropdown:hover .dropdown-content {
+    display: block;
 }
 
 /* MOSTRA MENU AL PASSAGGIO DEL MOUSE */
@@ -395,12 +412,12 @@ footer {
 /* LOGOUT SPECIFICO */
 .logout-red {
     font-weight: bold;
-    color: #2c3e50;
+    color: #222831;
     border-top: 1px solid #eee;
 }
 
 .logout-red:hover {
-    color: #2c3e50;
+    color: #222831;
     background-color: #fcecec;
 }
 /* Logout con colore specifico per evidenziarlo */
@@ -456,10 +473,10 @@ input[type="file"] { display: none; }
     align-items: center;
     gap: 10px;
     padding: 8px 12px;
-    background-color: #2c3e50;
+    background-color: #222831;
     color: white;
     font-weight: bold;
-    border-radius: 50px;
+    border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
 }
@@ -484,40 +501,7 @@ input[type="file"] { display: none; }
     font-size: 0.9rem;
 }
 
-/* MENU TENDINA */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 110%;
-    background-color: #ffffff;
-    min-width: 180px;
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    overflow: hidden;
-    z-index: 1000;
-}
 
-/* LINK MENU */
-.dropdown-content a {
-    display: block;
-    padding: 12px 16px;
-    color: #2c3e50;
-    text-decoration: none;
-    font-weight: 500;
-    transition: background 0.3s, color 0.3s;
-}
-
-/* HOVER LINK */
-.dropdown-content a:hover {
-    background-color: #e74c3c;
-    color: white !important;
-}
-
-/* MOSTRA MENU AL PASSAGGIO DEL MOUSE */
-.user-dropdown:hover .dropdown-content {
-    display: block;
-}
 
 /* LOGOUT SPECIFICO */
 .logout-link {
@@ -569,7 +553,7 @@ input[type="file"] { display: none; }
 
 .hero h1 {
     font-size: 2em;
-    color: #2c3e50;
+    color: #222831;
     margin-bottom: 15px;
 }
 
@@ -582,7 +566,7 @@ input[type="file"] { display: none; }
 .btn-explore {
     display: inline-block;
     padding: 12px 25px;
-    background-color: #e74c3c;
+    background-color: #788585;
     color: #fff;
     border-radius: 6px;
     font-weight: bold;
@@ -591,7 +575,7 @@ input[type="file"] { display: none; }
 }
 
 .btn-explore:hover {
-    background-color: #c0392b;
+    background-color: #788585a5;
 }
 
 /* SEZIONE CHI SIAMO */
@@ -606,7 +590,7 @@ input[type="file"] { display: none; }
 }
 
 .chi_siamo h2 {
-    color: #2c3e50;
+    color: #222831;
     margin-bottom: 15px;
 }
 
@@ -643,7 +627,7 @@ input[type="file"] { display: none; }
 
 .prodotto-card h3 {
     padding: 10px;
-    color: #2c3e50;
+    color: #222831;
     font-size: 1.1em;
 }
 
@@ -693,7 +677,7 @@ input[type="file"] { display: none; }
 .prodotto-card h3 {
     font-size: 1em;
     margin-top: 10px;
-    color: #2c3e50;
+    color: #222831;
 }
 
 .prodotto-card h3 small {
@@ -704,7 +688,7 @@ input[type="file"] { display: none; }
 .prodotto-card button {
     margin-top: 10px;
     padding: 10px 15px;
-    background-color: #e74c3c;
+    background-color: #788585;
     color: white;
     border: none;
     border-radius: 6px;
@@ -714,7 +698,7 @@ input[type="file"] { display: none; }
 }
 
 .prodotto-card button:hover {
-    background-color: #c0392b;
+    background-color: #78858595;
     transform: scale(1.05);
 }
 
@@ -727,7 +711,7 @@ input[type="file"] { display: none; }
     padding: 8px 12px; /* più piccolo */
     font-size: 0.9em;
     border-radius: 6px;
-    background-color: #2c3e50;
+    background-color: #222831;
     color: white;
     font-weight: bold;
     cursor: pointer;
@@ -736,4 +720,152 @@ input[type="file"] { display: none; }
 
 .btn-small:hover {
     background-color: #34495e;
+}
+.form-submit {
+    width: 100%;
+    padding: 14px;
+    background: #222831;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+.btn-cart {
+    width: auto !important;
+    padding: 8px 12px;
+    font-size: 0.85em;
+    background: #788585;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-cart:hover {
+    background: #788585af;
+}
+
+/* Contenitore generale */
+.profile-photo-card {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+    margin: 20px auto;
+}
+
+/* Immagine profilo */
+.profile-photo-card img#profilePreview {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.profile-photo-card img#profilePreview:hover {
+    transform: scale(1.05);
+}
+
+/* Pulsante scegli file */
+.profile-photo-card .custom-file-label {
+    display: inline-block;
+    background-color: #d7263d; /* rosso principale palette */
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-bottom: 10px;
+}
+
+.profile-photo-card .custom-file-label:hover {
+    background-color: #b71c2c; /* rosso hover più scuro */
+}
+
+/* Input file nascosto */
+.profile-photo-card input[type="file"] {
+    display: none;
+}
+
+/* Mostra nome file selezionato */
+.profile-photo-card #nome_file_selezionato {
+    display: block;
+    margin: 8px 0 15px;
+    font-size: 0.9em;
+    color: #627C85; /* colore secondario palette */
+}
+
+/* Bottone Carica Foto */
+.profile-photo-card .btn-upload {
+    padding: 12px 20px;
+    background-color: #1f2421; /* colore principale scuro */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.profile-photo-card .btn-upload:hover {
+    background-color: #627C85; /* colore secondario palette */
+    transform: scale(1.03);
+}
+
+.carrello-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.carrello-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+.carrello-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.carrello-item h4 {
+    margin: 0;
+    font-size: 1em;
+    color: #1f2421;
+}
+
+.carrello-item p {
+    margin: 0;
+    color: #627C85;
+}
+
+.carrello-item .btn-rimuovi {
+    margin-left: auto;
+    padding: 8px 12px;
+    background: #D7263D;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.carrello-item .btn-rimuovi:hover {
+    background: #b71c2b;
 }

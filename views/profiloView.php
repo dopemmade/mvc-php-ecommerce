@@ -22,24 +22,25 @@ if (session_status() === PHP_SESSION_NONE) session_start();
     <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start;">
 
         <!-- Sezione immagine profilo -->
-        <div style="flex:1; min-width:250px; text-align:center; background:#fff; padding:20px; border-radius:12px; border:1px solid #eee;">
-            <!-- Immagine anteprima -->
-            <img id="profilePreview"
-                 src="assets/images/<?php echo $_SESSION['user_photo'] ?? 'default.png'; ?>" 
-                 style="width:180px;height:180px;border-radius:50%;object-fit:cover;border:4px solid #2c3e50;box-shadow:0 4px 10px rgba(0,0,0,0.1);margin-bottom:15px;">
-            
-            <form action="index.php?pagina=aggiorna_foto" method="POST" enctype="multipart/form-data">
-                <!-- Pulsante scegli immagine -->
-                <label for="nuova_pfp" class="custom-file-label">Scegli Immagine</label>
-                <input type="file" name="nuova_pfp" id="nuova_pfp" accept="image/*">
-                
-                <!-- Mostra nome file -->
-                <span id="nome_file_selezionato" style="display:block; margin:10px 0; font-size:0.9em; color:#34495e;"></span>
-                
-                <!-- Bottone Carica -->
-                <button type="submit" name="upload_btn" class="btn-upload">Carica Foto</button>
-            </form>
-        </div>
+        <div class="profile-photo-card">
+    <!-- Anteprima immagine -->
+    <img id="profilePreview"
+         src="assets/images/<?php echo $_SESSION['user_photo'] ?? 'default.png'; ?>" 
+         alt="Avatar Utente">
+
+    <!-- Form caricamento foto -->
+    <form action="index.php?pagina=aggiorna_foto" method="POST" enctype="multipart/form-data">
+        <!-- Pulsante scegli immagine -->
+        <label for="nuova_pfp" class="custom-file-label">Scegli immagine</label>
+        <input type="file" name="nuova_pfp" id="nuova_pfp" accept="image/*">
+
+        <!-- Mostra nome file -->
+        <span id="nome_file_selezionato"></span>
+
+        <!-- Bottone Carica -->
+        <button type="submit" name="upload_btn" class="btn-upload">Carica Foto</button>
+    </form>
+</div>
 
         <!-- Sezione dati utente -->
         <div style="flex:1.5; min-width:300px;">

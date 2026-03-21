@@ -25,13 +25,20 @@ if (session_status() === PHP_SESSION_NONE) {
             <p>I tuoi acquisti online, sempre convenienti!</p>
         </span>
     </header>
+    <?php
+        $pagina_corrente = $_GET['pagina'] ?? 'home';
+        ?>
 
     <nav class="main_nav">
-    <a href="index.php?pagina=home">🏠Home</a>
-    <a href="index.php?pagina=catalogo">🦃Catalogo</a>
-    <a href="index.php?pagina=chi_siamo">👨🏻‍🦳Chi siamo</a>
-    <a href="index.php?pagina=contatti">📞Contatti</a>
-    <a href="index.php?pagina=carrello">🛒Carrello</a>
+    <a href="index.php?pagina=home" class="<?php echo ($pagina_corrente == 'home') ? 'attivo' : ''; ?>">🏠Home</a>
+
+    <a href="index.php?pagina=catalogo" class="<?php echo ($pagina_corrente == 'catalogo') ? 'attivo' : ''; ?>">🦃Catalogo</a>
+
+    <a href="index.php?pagina=chi_siamo" class="<?php echo ($pagina_corrente == 'chi_siamo') ? 'attivo' : ''; ?>">👨🏻‍🦳Chi siamo</a>
+
+    <a href="index.php?pagina=contatti" class="<?php echo ($pagina_corrente == 'contatti') ? 'attivo' : ''; ?>">📞Contatti</a>
+
+    <a href="index.php?pagina=carrello" class="<?php echo ($pagina_corrente == 'carrello') ? 'attivo' : ''; ?>">🛒Carrello</a>
 
     <?php if (isset($_SESSION['utente_loggato'])): ?>
         <div class="user-dropdown">

@@ -3,6 +3,12 @@ require_once 'headerView.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
 ?>
 
+<?php if(isset($_GET['added'])): ?>
+        <div class="profile-msg success">
+            ✅ Album aggiunto al carrello!
+        </div>
+    <?php endif; ?>
+
 <div class="container-catalog">
     <h1>🎵 Catalogo Vinili Hip Hop & Rap</h1>
     <p style="text-align:center; margin-bottom:30px;">
@@ -56,11 +62,11 @@ if (session_status() === PHP_SESSION_NONE) session_start();
         <div class="prodotto-card">
             <img src="assets/images/<?php echo $album['image']; ?>" alt="<?php echo $album['title']; ?>">
             <h3><?php echo $album['title']; ?><br><small><?php echo $album['artist']; ?></small></h3>
-            <form method="POST" action="aggiungi_carrello.php">
+            <form method="POST" action="controllers/aggiungi_carrello.php">
                 <input type="hidden" name="album_title" value="<?php echo $album['title']; ?>">
                 <input type="hidden" name="album_artist" value="<?php echo $album['artist']; ?>">
                 <input type="hidden" name="album_image" value="<?php echo $album['image']; ?>">
-                <button type="submit" class="btn-small">🛒 Aggiungi al carrello</button>
+                <button type="submit" class="btn-cart">🛒 Aggiungi</button>           
             </form>
         </div>
         <?php endforeach; ?>
