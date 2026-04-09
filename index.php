@@ -43,5 +43,17 @@
         // Qui carichiamo la logica PHP che salva il file
         include 'controllers/aggiorna_foto.php'; 
         break;
+        case 'checkout':
+            require_once 'controllers/checkoutController.php';
+            break;
+        case 'elabora_pagamento':
+            require_once 'controllers/elabora_pagamento.php';
+            break;
+        case 'successo':
+            require_once 'views/successoView.php';
+            break;
+        case 'ordini':
+            require_once 'controllers/ordiniController.php';
+            break;
     }
 ?>

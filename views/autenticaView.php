@@ -22,6 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Fondamentale: salviamo il nome della foto (pfp) nella sessione
             // Se è vuoto nel DB, usiamo 'default.png'
             $_SESSION['user_photo'] = !empty($utente['pfp']) ? $utente['pfp'] : 'default.png';
+            // Salviamo anche il ruolo!
+            $_SESSION['ruolo'] = $utente['ruolo'] ?? 'user';
             $_SESSION['utente_telefono'] = $utente['telefono'] ?? '';
             $_SESSION['utente_indirizzo'] = $utente['indirizzo'] ?? '';
             $_SESSION['utente_provincia'] = $utente['provincia'] ?? '';

@@ -7,7 +7,13 @@ if (session_status() === PHP_SESSION_NONE) session_start();
         <div class="profile-msg success">
             ✅ Album aggiunto al carrello!
         </div>
-    <?php endif; ?>
+<?php endif; ?>
+
+<?php if(isset($_GET['admin_added'])): ?>
+    <div class="profile-msg success">
+        ✅ Prodotto salvato nel catalogo con successo!
+    </div>
+<?php endif; ?>
 
 <div class="container-catalog">
     <h1>🎵 Catalogo Vinili Hip Hop & Rap</h1>
@@ -15,58 +21,76 @@ if (session_status() === PHP_SESSION_NONE) session_start();
         Scopri tutti i nostri vinili e aggiungili al carrello!
     </p>
 
+    <?php if(isset($_SESSION['ruolo']) && $_SESSION['ruolo'] === 'admin'): ?>
+    <div class="admin-panel mb-4">
+        <h2>🛠️ Pannello Amministratore - Aggiungi Nuovo Vinile</h2>
+        <form method="POST" action="index.php?pagina=catalogo" class="admin-form">
+            <input type="hidden" name="azione" value="aggiungi_prodotto">
+            
+            <div class="form-group">
+                <label>Titolo Album:</label>
+                <input type="text" name="title" required placeholder="Es. The Blueprint">
+            </div>
+            <div class="form-group">
+                <label>Artista:</label>
+                <input type="text" name="artist" required placeholder="Es. Jay-Z">
+            </div>
+            <div class="form-group">
+                <label>Prezzo (€):</label>
+                <input type="number" step="0.01" name="price" required placeholder="19.99">
+            </div>
+            <div class="form-group">
+                <label>Pezzi in Stock:</label>
+                <input type="number" name="stock" required placeholder="10">
+            </div>
+            <div class="form-group">
+                <label>Nome file immagine (es. blueprint.jpg):</label>
+                <input type="text" name="image_name" placeholder="Lascia vuoto per default_album.jpg">
+            </div>
+            
+            <button type="submit" class="btn-admin">➕ Aggiungi al DB</button>
+        </form>
+    </div>
+    <?php endif; ?>
+
     <div class="prodotti">
         <?php 
-        // Lista album (puoi aggiungere le copertine in assets/images/)
-        $album_list = [
-            ["title"=>"Enter the Wu-Tang (36 Chambers)", "artist"=>"Wu-Tang Clan", "image"=>"enter_the_wu-tang.jpg"],
-            ["title"=>"Illmatic", "artist"=>"Nas", "image"=>"illmatic.jpg"],
-            ["title"=>"Ready to Die", "artist"=>"The Notorious B.I.G.", "image"=>"ready_to_die.jpg"],
-            ["title"=>"The Infamous", "artist"=>"Mobb Deep", "image"=>"the_infamous.jpg"],
-            ["title"=>"Liquid Swords", "artist"=>"GZA", "image"=>"liquid_swords.jpg"],
-            ["title"=>"Only Built 4 Cuban Linx…", "artist"=>"Raekwon", "image"=>"only_built_4_cuban_linx.jpg"],
-            ["title"=>"Reasonable Doubt", "artist"=>"Jay-Z", "image"=>"reasonable_doubt.jpg"],
-            ["title"=>"Midnight Marauders", "artist"=>"A Tribe Called Quest", "image"=>"midnight_marauders.jpg"],
-            ["title"=>"Me Against the World", "artist"=>"2Pac", "image"=>"me_against_the_world.jpg"],
-            ["title"=>"The Miseducation of Lauryn Hill", "artist"=>"Lauryn Hill", "image"=>"miseducation_of_lauryn_hill.jpg"],
-            ["title"=>"Beats, Rhymes & Life", "artist"=>"A Tribe Called Quest", "image"=>"beats_rhymes_life.jpg"],
-            ["title"=>"Blunted on Reality", "artist"=>"Fugees", "image"=>"blunted_on_reality.jpg"],
-            ["title"=>"Madvillainy", "artist"=>"MF DOOM & Madlib", "image"=>"madvillainy.jpg"],
-            ["title"=>"The College Dropout", "artist"=>"Kanye West", "image"=>"the_college_dropout.jpg"],
-            ["title"=>"Damn.", "artist"=>"Kendrick Lamar", "image"=>"damn.jpg"],
-            ["title"=>"Section.80", "artist"=>"Kendrick Lamar", "image"=>"section80.jpg"],
-            ["title"=>"1999", "artist"=>"Joey Bada$$", "image"=>"1999.jpg"],
-            ["title"=>"2000", "artist"=>"Joey Bada$$", "image"=>"2000.jpg"],
-            ["title"=>"Piñata", "artist"=>"Freddie Gibbs & Madlib", "image"=>"piñata.jpg"],
-            ["title"=>"Alfredo", "artist"=>"Freddie Gibbs & The Alchemist", "image"=>"alfredo.jpg"],
-            ["title"=>"Pray for Paris", "artist"=>"Westside Gunn", "image"=>"pray_for_paris.jpg"],
-            ["title"=>"Magic", "artist"=>"Nas", "image"=>"magic.jpg"],
-            ["title"=>"King’s Disease III", "artist"=>"Nas", "image"=>"kings_disease_iii.jpg"],
-            ["title"=>"The Off-Season", "artist"=>"J. Cole", "image"=>"the_off-season.jpg"],
-            ["title"=>"Blue Lips", "artist"=>"ScHoolboy Q", "image"=>"blue_lips.jpg"],
-            ["title"=>"DS2", "artist"=>"Future", "image"=>"ds2.jpg"],
-            ["title"=>"I Never Liked You", "artist"=>"Future", "image"=>"i_never_liked_you.jpg"],
-            ["title"=>"Wunna", "artist"=>"Gunna", "image"=>"wunna.jpg"],
-            ["title"=>"The Last Wun", "artist"=>"Gunna", "image"=>"the_last_wun.jpg"],
-            ["title"=>"Luv Is Rage", "artist"=>"Lil Uzi Vert", "image"=>"luv_is_rage.jpg"],
-            ["title"=>"Eternal Atake", "artist"=>"Lil Uzi Vert", "image"=>"eternal_atake.jpg"],
-            ["title"=>"Playboi Carti", "artist"=>"Playboi Carti", "image"=>"playboi_carti.jpg"],
-            ["title"=>"Beerbongs & Bentleys", "artist"=>"Post Malone", "image"=>"beerbongs_bentleys.jpg"],
-            ["title"=>"IGOR", "artist"=>"Tyler, The Creator", "image"=>"igor.jpg"],
-            ["title"=>"Blonde", "artist"=>"Frank Ocean", "image"=>"blonde.jpg"],
-            ["title"=>"Lahai", "artist"=>"Sampha", "image"=>"lahai.jpg"],
-            ["title"=>"SOS", "artist"=>"SZA", "image"=>"sos.jpg"]
-        ];
+        // $album_list arriva da catalogoController.php
+        foreach($album_list as $album): 
+            $outOfStock = ($album['stock'] <= 0);
+            $lowStock = ($album['stock'] > 0 && $album['stock'] <= 3);
+            
+            // Retrocompatibiltà chiavi model
+            $immagine = !empty($album['img']) ? $album['img'] : 'default_album.jpg';
+        ?>
+        <div class="prodotto-card <?php echo $outOfStock ? 'out-of-stock-card' : ''; ?>">
+            <img src="assets/images/<?php echo htmlspecialchars($immagine); ?>" alt="<?php echo htmlspecialchars($album['title']); ?>">
+            
+            <h3><?php echo htmlspecialchars($album['title']); ?><br><small><?php echo htmlspecialchars($album['artist']); ?></small></h3>
+            
+            <div class="price-container">
+                <p class="price-tag">€<?php echo number_format((float)$album['price'], 2); ?></p>
+                <?php if($outOfStock): ?>
+                    <span class="badge badge-stock-out">Esaurito</span>
+                <?php elseif($lowStock): ?>
+                    <span class="badge badge-stock-low">Solo <?php echo $album['stock']; ?> rimasti!</span>
+                <?php else: ?>
+                    <span class="badge badge-stock-ok">Disponibile (<?php echo $album['stock']; ?>)</span>
+                <?php endif; ?>
+            </div>
 
-        foreach($album_list as $album): ?>
-        <div class="prodotto-card">
-            <img src="assets/images/<?php echo $album['image']; ?>" alt="<?php echo $album['title']; ?>">
-            <h3><?php echo $album['title']; ?><br><small><?php echo $album['artist']; ?></small></h3>
             <form method="POST" action="controllers/aggiungi_carrello.php">
-                <input type="hidden" name="album_title" value="<?php echo $album['title']; ?>">
-                <input type="hidden" name="album_artist" value="<?php echo $album['artist']; ?>">
-                <input type="hidden" name="album_image" value="<?php echo $album['image']; ?>">
-                <button type="submit" class="btn-cart">🛒 Aggiungi</button>           
+                <input type="hidden" name="album_id" value="<?php echo htmlspecialchars($album['id']); ?>">
+                <input type="hidden" name="album_title" value="<?php echo htmlspecialchars($album['title']); ?>">
+                <input type="hidden" name="album_artist" value="<?php echo htmlspecialchars($album['artist']); ?>">
+                <input type="hidden" name="album_image" value="<?php echo htmlspecialchars($immagine); ?>">
+                <input type="hidden" name="album_price" value="<?php echo htmlspecialchars($album['price']); ?>">
+                
+                <?php if(!$outOfStock): ?>
+                    <button type="submit" class="btn-cart">🛒 Aggiungi</button>           
+                <?php else: ?>
+                    <button type="button" class="btn-cart disabled" disabled style="background:#ccc;cursor:not-allowed;">Finito</button>
+                <?php endif; ?>
             </form>
         </div>
         <?php endforeach; ?>
